@@ -1,8 +1,12 @@
 {
-  "name": "you-got-this",
+  "name": "you-got-this-rupnil",
+  "publisher": "rupnil-codes",
   "displayName": "you-got-this",
   "description": "Get encouragements while coding to boost your motivation.",
-  "version": "0.0.1",
+  "repository": {
+    "url": "https://github.com/rupnil-codes/you-got-this"
+  },
+  "version": "0.2.0",
   "engines": {
     "vscode": "^1.116.0"
   },
