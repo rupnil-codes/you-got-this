@@ -30,8 +30,6 @@ N/A
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 0.2.0
 
 THe first release!
