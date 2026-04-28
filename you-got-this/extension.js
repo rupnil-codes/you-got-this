@@ -1,33 +1,40 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
+const messages = [
+  "You got this!",
+  "you're crushing it!",
+  "You're doing great",
+  "bro is coding like a pro rn",
+  "Keep building!",
+  "Skill issue? Nah, you're goated",
+  "Your future self will thank you for this",
+  "Absolute legend.",
+];
 
 /**
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
+	const msg = messages[Math.floor(Math.random() * messages.length)];
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "you-got-this" is now active!');
+	const statusBar = vscode.window.createStatusBarItem(
+		vscode.StatusBarAlignment.Left, 100
+	);
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('you-got-this.helloWorld', function () {
-		// The code you place here will be executed every time your command is executed
+	statusBar.text = `$(heart) ${msg}`;
+	statusBar.tooltip = "keep coding!";
+	statusBar.show();
 
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from you-got-this!');
-	});
+	const interval = setInterval(() => {
+		const newMsg = messages[Math.floor(Math.random() * messages.length)];
+		statusBar.text = `$(heart) ${newMsg}`;
+	}, 60 * 1000);
 
-	context.subscriptions.push(disposable);
+	context.subscriptions.push(statusBar);
+	context.subscriptions.push({ dispose: () => clearInterval(interval) });
+	
 }
 
-// This method is called when your extension is deactivated
 function deactivate() {}
 
 module.exports = {
